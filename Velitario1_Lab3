@@ -1,0 +1,53 @@
+public class Clock {
+    
+    // Converts seconds to minutes
+    public static double SecondsToMinutes(int seconds) {
+        // There are 60 seconds in a minute
+        return seconds / 60.0;
+    }
+
+    // Converts seconds to hours
+    public static double SecondsToHours(int seconds) {
+        // There are 3600 seconds in an hour (60 seconds * 60 minutes)
+        return seconds / 3600.0;
+    }
+
+    // Converts minutes to seconds
+    public static int MinutesToSeconds(int minutes) {
+        // There are 60 seconds in a minute
+        return minutes * 60;
+    }
+
+    // Converts minutes to hours
+    public static double MinutesToHours(int minutes) {
+        // There are 60 minutes in an hour
+        return minutes / 60.0;
+    }
+
+    // Converts hours to seconds
+    public static int HoursToSeconds(int hours) {
+        // There are 3600 seconds in an hour (60 seconds * 60 minutes)
+        return hours * 3600;
+    }
+
+    // Converts hours to minutes
+    public static int HoursToMinutes(int hours) {
+        // There are 60 minutes in an hour
+        return hours * 60;
+    }
+
+    // Main method to test the Clock class methods
+    public static void main(String[] args) {
+        // Test the conversion methods
+        int seconds = 3600;
+        int minutes = 120;
+        int hours = 2;
+
+        System.out.println(seconds + " seconds is " + SecondsToMinutes(seconds) + " minutes.");
+        System.out.println(seconds + " seconds is " + SecondsToHours(seconds) + " hours.");
+        System.out.println(minutes + " minutes is " + MinutesToSeconds(minutes) + " seconds.");
+        System.out.println(minutes + " minutes is " + MinutesToHours(minutes) + " hours.");
+        System.out.println(hours + " hours is " + HoursToSeconds(hours) + " seconds.");
+        System.out.println(hours + " hours is " + HoursToMinutes(hours) + " minutes.");
+    }
+}
