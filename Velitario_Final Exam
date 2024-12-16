@@ -1,0 +1,98 @@
+import java.util.Stack;
+
+class Creature {
+    String name;
+    int powerLevel;
+
+    Creature(String name, int powerLevel) {
+        this.name = name;
+        this.powerLevel = powerLevel;
+    }
+
+    @Override
+    public String toString() {
+        return name + " - " + powerLevel;
+    }
+}
+
+class Main {
+
+    // Bubble Sort: Sort creatures by power level in descending order
+    public static void bubbleSort(Creature[] creatures) {
+        int n = creatures.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (creatures[j].powerLevel < creatures[j + 1].powerLevel) {
+                    // Swap
+                    Creature temp = creatures[j];
+                    creatures[j] = creatures[j + 1];
+                    creatures[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    // Selection Sort: Sort creatures by power level in ascending order
+    public static void selectionSort(Creature[] creatures) {
+        int n = creatures.length;
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (creatures[j].powerLevel < creatures[minIndex].powerLevel) {
+                    minIndex = j;
+                }
+            }
+            // Swap
+            Creature temp = creatures[minIndex];
+            creatures[minIndex] = creatures[i];
+            creatures[i] = temp;
+        }
+    }
+
+    public static void main(String[] args) {
+        // Create an array of creatures
+        Creature[] creatures = {
+            new Creature("Dragon", 95),
+            new Creature("Griffin", 88),
+            new Creature("Unicorn", 78),
+            new Creature("Phoenix", 92),
+            new Creature("Centaur", 85)
+        };
+
+        // Bubble Sort
+        System.out.println("Bubble Sort: Descending Order by Power Level");
+        bubbleSort(creatures);
+        for (Creature creature : creatures) {
+            System.out.println(creature);
+        }
+
+        // Reset the array for selection sort
+        creatures = new Creature[]{
+            new Creature("Dragon", 95),
+            new Creature("Griffin", 88),
+            new Creature("Unicorn", 78),
+            new Creature("Phoenix", 92),
+            new Creature("Centaur", 85)
+        };
+
+        // Selection Sort
+        System.out.println("\nSelection Sort: Ascending Order by Power Level");
+        selectionSort(creatures);
+        for (Creature creature : creatures) {
+            System.out.println(creature);
+        }
+
+        // Stack Implementation
+        System.out.println("\nStack Implementation: Popping Creatures");
+        Stack<Creature> creatureStack = new Stack<>();
+        for (Creature creature : creatures) {
+            creatureStack.push(creature);
+        }
+
+        // Pop all creatures from the stack
+        while (!creatureStack.isEmpty()) {
+            Creature poppedCreature = creatureStack.pop();
+            System.out.println("Popped: " + poppedCreature);
+        }
+    }
+}
