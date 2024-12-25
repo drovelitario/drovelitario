@@ -3,51 +3,58 @@ import java.util.Scanner;
 class Main {
 
     public static void main(String[] args) {
-        // Initialize Scanner object for input
+        // Initialize Scanner object
         Scanner scanner = new Scanner(System.in);
 
-        // Get student information
+        // Input student details
         System.out.print("Enter student name: ");
         String studentName = scanner.nextLine();
-        System.out.print("Enter course name: ");
-        String courseName = scanner.nextLine();
+
+        System.out.print("Enter course: ");
+        String course = scanner.nextLine();
+
         System.out.print("Enter course code: ");
         String courseCode = scanner.nextLine();
-        System.out.print("Enter number of units: ");
-        int numUnits = scanner.nextInt();
 
-        // Validate number of units
-        if (numUnits > 10) {
-            System.out.println("Error: Maximum number of units is 10.");
+        System.out.print("Enter number of units: ");
+        int units = scanner.nextInt();
+
+        // Validate units
+        if (units > 10 || units < 0) {
+            System.out.println("Invalid number of units! Maximum is 10 and minimum is 0");
             return;
         }
 
-        // Calculate enrollment fee
-        int enrollmentFee = numUnits * 1000;
+        // Compute enrollment fee
+        int enrollmentFee = calculateEnrollmentFee(units);
 
-        // Output student information and enrollment fee
-        System.out.println("\nStudent Information:");
-        System.out.println("Name: " + studentName);
-        System.out.println("Course: " + courseName);
+        // Output student details and enrollment fee
+        System.out.println("\nStudent Name: " + studentName);
+        System.out.println("Course: " + course);
         System.out.println("Course Code: " + courseCode);
-        System.out.println("Number of Units: " + numUnits);
-        System.out.println("Total Enrollment Fee: " + enrollmentFee);
+        System.out.println("Enrollment Fee: " + enrollmentFee);
 
-        // Get payment amount
+        // Get payment amount from student
         System.out.print("\nEnter payment amount: ");
-        int paymentAmount = scanner.nextInt();
+        int payment = scanner.nextInt();
 
-        // Process payment
-        if (paymentAmount == enrollmentFee) {
-            System.out.println("Fully Paid.");
-        } else if (paymentAmount < enrollmentFee) {
-            System.out.println("Partial Payment. Amount paid: " + paymentAmount);
-            System.out.println("Remaining balance: " + (enrollmentFee - paymentAmount));
-        } else {
-            System.out.println("Error: Payment amount exceeds the enrollment fee.");
-        }
+        // Display payment status
+        displayPaymentStatus(enrollmentFee, payment);
 
-        // Close scanner object
         scanner.close();
+    }
+
+    // Method to calculate enrollment fee
+    private static int calculateEnrollmentFee(int units) {
+        return units * 1000;
+    }
+
+    // Method to display payment status
+    private static void displayPaymentStatus(int enrollmentFee, int payment) {
+        if (payment == enrollmentFee) {
+            System.out.println("\nFully Paid");
+        } else if (payment < enrollmentFee) {
+            System.out.println("\nPartial Payment: " + payment);
+        }
     }
 }
